@@ -1,0 +1,439 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ==================== RESPONSIVE DESIGN & ANIMATIONS ==================== */
+
+/* Mobile-first approach - Mobile styles */
+@media (max-width: 480px) {
+    /* Header responsive */
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .header-icons {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    /* Navigation hidden on mobile */
+    .nav {
+        display: none !important;
+    }
+
+    /* Hero banner responsive */
+    .hero-banner-section {
+        height: 300px;
+    }
+
+    .hero-title {
+        font-size: 24px !important;
+        margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px !important;
+        margin-bottom: 20px;
+    }
+
+    .hero-btn {
+        padding: 12px 25px !important;
+        font-size: 14px !important;
+    }
+
+    .carousel-nav {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 16px;
+    }
+
+    /* Products grid */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .product-card {
+        border-radius: 8px;
+    }
+
+    .product-image {
+        height: 150px;
+    }
+
+    /* Categories grid */
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .category-card {
+        border-radius: 8px;
+    }
+
+    .category-card img {
+        height: 120px;
+    }
+
+    /* Section title responsive */
+    .section-title {
+        font-size: 24px !important;
+        margin: 30px 0 20px !important;
+    }
+
+    .section-title-modern {
+        font-size: 26px !important;
+        margin: 40px 0 25px !important;
+    }
+
+    .title-icon {
+        font-size: 28px !important;
+        margin-right: 8px;
+    }
+
+    /* Carousel wrapper responsive */
+    .products-carousel-wrapper {
+        padding: 0 30px !important;
+    }
+
+    .carousel-control {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 14px;
+    }
+
+    /* Promo banner */
+    .promo-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .promo-text h3 {
+        font-size: 20px;
+    }
+
+    .promo-text p {
+        font-size: 14px;
+    }
+
+    .promo-btn {
+        padding: 12px 25px !important;
+        font-size: 14px;
+    }
+
+    /* Container padding */
+    .container {
+        padding: 0 15px !important;
+    }
+}
+
+/* Tablet styles (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Header responsive */
+    .header-content {
+        gap: 20px;
+    }
+
+    .nav {
+        gap: 15px !important;
+    }
+
+    .nav a {
+        font-size: 13px !important;
+    }
+
+    /* Hero banner */
+    .hero-banner-section {
+        height: 400px;
+    }
+
+    .hero-title {
+        font-size: 40px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 18px !important;
+    }
+
+    .carousel-nav {
+        width: 45px !important;
+        height: 45px !important;
+    }
+
+    /* Products grid */
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+    }
+
+    .product-image {
+        height: 200px;
+    }
+
+    /* Categories grid */
+    .categories-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+
+    /* Section titles */
+    .section-title {
+        font-size: 32px !important;
+    }
+
+    .section-title-modern {
+        font-size: 36px !important;
+    }
+
+    /* Carousel */
+    .products-carousel-wrapper {
+        padding: 0 45px !important;
+    }
+
+    .carousel-control {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+/* Desktop styles (769px and above) */
+@media (min-width: 769px) {
+    /* Full navigation display */
+    .nav {
+        display: flex !important;
+    }
+
+    /* Hero banner full height */
+    .hero-banner-section {
+        height: 600px;
+    }
+
+    /* Full grid layouts */
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+    }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+    }
+
+    .products-carousel-wrapper {
+        padding: 0 60px !important;
+    }
+}
+
+/* ==================== ENHANCED ANIMATIONS ==================== */
+
+/* Staggered list animations */
+.product-card {
+    animation: slideInUp 0.6s ease-out backwards;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.05s; }
+.product-card:nth-child(2) { animation-delay: 0.1s; }
+.product-card:nth-child(3) { animation-delay: 0.15s; }
+.product-card:nth-child(4) { animation-delay: 0.2s; }
+.product-card:nth-child(5) { animation-delay: 0.25s; }
+.product-card:nth-child(6) { animation-delay: 0.3s; }
+.product-card:nth-child(7) { animation-delay: 0.35s; }
+.product-card:nth-child(8) { animation-delay: 0.4s; }
+
+/* Category cards staggered animation */
+.category-card {
+    animation: scaleInCenter 0.6s ease-out backwards;
+}
+
+.category-card:nth-child(1) { animation-delay: 0.1s; }
+.category-card:nth-child(2) { animation-delay: 0.2s; }
+.category-card:nth-child(3) { animation-delay: 0.3s; }
+.category-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Enhanced animations keyframes */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleInCenter {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotateScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-1deg);
+    }
+    75% {
+        transform: rotate(1deg);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Smooth transitions for interactive elements */
+button, a, .btn {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(102, 126, 234, 0.3);
+    border-radius: 50%;
+    border-top-color: #667eea;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Page transition animation */
+.page-enter {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hover lift effect */
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Touch-friendly adjustments for mobile */
+@media (hover: none) and (pointer: coarse) {
+    button, .btn, a {
+        padding: 12px 24px;
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .product-card:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Accessibility - Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-banner-section {
+        height: 300px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+}
