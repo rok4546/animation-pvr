@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: anime-artistry
+    env: php
+    buildCommand: composer install && npm install && npm run build
+    startCommand: php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_NAME
+        value: "ANIME ARTISTRY"
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        value: base64:KhEWpInVRW1PcdRHOXYitNC/OsQmb2zmK0vzccsYxh8=
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        value: https://artistry.onrender.com
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /tmp/database.sqlite
+      - key: SESSION_DRIVER
+        value: file
+      - key: CACHE_STORE
+        value: file
+      - key: QUEUE_CONNECTION
+        value: sync
