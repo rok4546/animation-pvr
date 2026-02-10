@@ -75,6 +75,11 @@ Route::get('/order-confirmation/{order}', [CartController::class, 'confirmation'
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
+    // Redirect /admin to login or dashboard based on auth
+    Route::get('/', function () {
+        return auth()->check() ? redirect()->route('admin.dashboard') : redirect()->route('admin.login');
+    });
+    
     // Auth Routes
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
